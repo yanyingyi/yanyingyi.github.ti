@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026年1月8日倒计时</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Microsoft Yahei", sans-serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #e74c3c;
+        }
+        .countdown {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        .time-item {
+            text-align: center;
+        }
+        .time-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #2c3e50;
+            background: #f8f9fa;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        .time-label {
+            font-size: 1rem;
+            color: #7f8c8d;
+        }
+        .tip {
+            font-size: 1.1rem;
+            color: #34495e;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>距离赵一丹回家还有</h1>
+        <div class="countdown">
+            <div class="time-item">
+                <div class="time-number" id="days">00</div>
+                <div class="time-label">天</div>
+            </div>
+            <div class="time-item">
+                <div class="time-number" id="hours">00</div>
+                <div class="time-label">时</div>
+            </div>
+            <div class="time-item">
+                <div class="time-number" id="minutes">00</div>
+                <div class="time-label">分</div>
+            </div>
+            <div class="time-item">
+                <div class="time-number" id="seconds">00</div>
+                <div class="time-label">秒</div>
+            </div>
+        </div>
+        <div class="tip">✨ 正在实时计算中...</div>
+    </div>
+
+    <script>
+        // 目标日期：2026年1月8日 00:00:00
+        const targetDate = new Date('2026-02-08T00:00:00');
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                document.querySelector('.tip').textContent = '🎉 目标日期已到达！';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            // 补零显示
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // 初始化并每秒更新
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
